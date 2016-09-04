@@ -1,0 +1,66 @@
+@import "main";
+
+$border--color: #888;
+$padding: 0.5rem;
+
+.message-input {
+	@include border-box;
+
+	&.container {
+		width:100%;
+		background-color: #fafafa;
+	}
+	.inputbox {
+		@include border-box;
+		width:100%;
+		display:inline-block;
+		//margin-top:8px;
+
+		input[type="text"],
+		textarea {
+			@include border-box;
+			border:0px solid transparent;
+			resize:none;
+			width:100%;
+		}
+
+		textarea {
+			outline:none;
+		}
+	}
+	.toolbar {
+		@extends clearfix;
+		height:24px;
+
+	}
+
+	.rightTools {
+		float: right;
+		position: relative;
+
+		.sendCheckbox {
+			margin-right:4px;
+			display: inline-block;
+			text-align: right;
+			line-height: 22px;
+
+			span {
+				overflow: hidden;
+				white-space: nowrap;
+				display: inline-block;
+				vertical-align: middle;
+			line-height: 22px;
+			}
+
+			input {
+				display: inline-block;
+				margin-left:5px;
+				vertical-align: middle;
+			}
+		}
+
+		.messageSendButton {
+			display: inline-block;
+		}
+	}
+}

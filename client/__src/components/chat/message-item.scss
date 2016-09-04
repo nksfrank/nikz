@@ -1,0 +1,21 @@
+@import "main";
+
+$fontSizeSmall: 0.68rem;
+
+.message-item {
+	@extends: %clearfix;
+
+	strong {
+		display: block;
+		margin: 0 0 3px 0;
+	}
+
+	p {
+		white-space: pre-wrap;
+	}
+	
+	.date {
+		font-size: $fontSizeSmall;
+		color: $fontLightGrey;
+	}
+}

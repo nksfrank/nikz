@@ -1,0 +1,26 @@
+$chatWidth: 600px;
+$chatInputContainerHeight: 144px;
+$padding: 1em;
+$chatBorder: 1px solid rgba(34, 36, 38, 0.15);
+
+@mixin chat--message-list-height($inputcontainerHeight) {
+	height: calc(100% - #{$inputcontainerHeight});
+}
+.chat {
+	width:$chatWidth;
+	height:100%;
+
+	&.fullsize {
+		margin:0 auto;
+		border-left: $chatBorder;
+		border-right: $chatBorder;
+	}
+
+	.message-list {
+		@include chat--message-list-height($chatInputContainerHeight);
+	}
+	.message-input.container {
+		padding: $padding;
+		border-top: $chatBorder;
+	}
+}

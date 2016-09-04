@@ -1,0 +1,30 @@
+@import "colors";
+$borderRadius: 0.3rem;
+$padding: 0.5rem;
+$segmentsBorder: 1px solid rgba(34, 36, 38, 0.15);
+
+.segment {
+	background: $background;
+}
+.segments {
+	border: $segmentsBorder;
+	border-radius: $borderRadius;
+
+	> .segment {
+		border-radius: 0px;
+		padding: $padding;
+		border: none;
+		border-top: $segmentsBorder;
+
+		&:first-child {
+			border-radius: $borderRadius $borderRadius 0 0;
+			border-top:none;
+		}
+		&:last-child {
+			border-radius: 0 0 $borderRadius $borderRadius;
+		}
+		&:only-child {
+			border-radius:$borderRadius;
+		}
+	}
+}

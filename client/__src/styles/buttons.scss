@@ -1,0 +1,25 @@
+@import "colors";
+
+button,
+.button {
+	cursor: pointer;
+	outline: none;
+	border-radius: 2px;
+	font-weight:bold;
+	line-height:18px;
+	text-shadow:none;
+	vertical-align:baseline;
+	white-space:nowrap;
+	padding: 2px 8px;
+
+	&.confirm {
+		color: #fff;
+		background-color: $primary;
+		border:1px solid $primary-border;
+	}
+}
+
+.disabled.button {
+	cursor: default;
+	pointer-event: none !important;
+}
