@@ -1,0 +1,22 @@
+{
+  "name": "nikz",
+  "version": "1.0.0",
+  "description": "Personal webpage built for me by me",
+  "main": "index.js",
+  "scripts": {
+    "watch:dev": "nodemon index.js"
+  },
+  "author": "Niklas Frank",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.0",
+    "express": "^4.14.0",
+    "faker": "^3.1.0",
+    "nodemon": "^1.10.2",
+    "rethinkdb": "^2.3.2"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.3"
+  }
+}
