@@ -1,6 +1,6 @@
-const Blogs = require('./controllers/blog');
+const Conversations = require('./controllers/chat/conversation');
 
 module.exports = function(app) {
-	app.get('/blogs', Blogs.list);
-	app.get('/blogs/:id', Blogs.post);
+	app.get('/messages/:id', Conversations.get);
+	app.post('/messages/:id', Conversations.post);
 };
