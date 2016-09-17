@@ -16,6 +16,15 @@ module.exports = {
     filename: 'bundle.js',
     sourceMapFilename: '[file].map'
   },
+	resolve: {
+		root: path.resolve(__dirname),
+		alias: {
+			app: '__src',
+			service: '__src/service',
+			util: '__src/util'
+		},
+		extensions: ['', '.js', '.jsx']
+	},
 	module:{
 		loaders: [{
 			test: /\.jsx?$/,
@@ -29,10 +38,6 @@ module.exports = {
 			},
 			exclude: /(node_modules|bower_components)/
 		},
-	  // {
-	  //     test: /\.scss$/,
-	  //     loaders: [ 'style', 'css?sourceMap', 'sass?sourceMap' ]
-	  // }
 		{
 			test: /\.scss$/,
 			loader: ExtractTextPlugin.extract('style-loader', 'css?sourceMap!sass?sourceMap'),
@@ -47,9 +52,6 @@ module.exports = {
 	sassLoader: {
     includePaths: [ '__src/styles' ]
   },
-	resolve: {
-		extensions: ['', '.js', '.jsx']
-	},
   devtool: 'eval-source-map',
 	devServer: {
 		historyApiFallback: true,
