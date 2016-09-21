@@ -18,6 +18,18 @@ const conversations = [...Array(threads)].map((obj) => {
 	}
 });
 
+conversations.push({
+	id: "1",
+	messages: [...Array(quantity)].map((entity) => {
+		entity = {
+			id: faker.random.uuid(),
+			timeStamp: Date.now(),
+			message: "lorem ipsum"
+		}
+		return entity;
+	})
+});
+
 exports.getAll = (req, res, next) => {
 	res.json(conversations.map(entity => {
 		return entity.id;
@@ -27,7 +39,7 @@ exports.getAll = (req, res, next) => {
 exports.get = (req, res, next) => {
 	let conversationId = req.params.conversationId;
 	// if(conversationId === undefined)
-	let conversation = conversations.filter((entity) => entity.id === conversationId);
+	let conversation = conversations.find(entity => entity.id === conversationId);
 	if(conversation.id === undefined)
 		return res.status(404).json({status: 404, error: `no conversation with id:${conversationId}`});
 	res.json(conversation);
