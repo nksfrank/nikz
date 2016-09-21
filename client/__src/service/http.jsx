@@ -1,7 +1,7 @@
 import Rx from 'rxjs/Observable';
 import 'whatwg-fetch';
 
-const Host = 'http://localhost:8081/api/';
+const Host = 'http://localhost:3090/';
 const get = (endpoint) => {
   Observable.fromPromise(fetch(HOST+endpoint, {method:'get'}))
     .flatMap(res => Observable.fromPromise(res.json()))
