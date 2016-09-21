@@ -1,4 +1,6 @@
 import React, {Component, PropTypes} from 'react';
+import connect from 'app/rx-state/connect';
+import state$ from 'app/state';
 import ChatHeader from './chat-header';
 import MessageList from './message-list';
 import MessageItem from './message-item';
@@ -124,4 +126,6 @@ a`
 	}
 }
 
-export default Chat;
+export default connect(state$, state => {
+	messages: state.conversationThread
+})(Chat);
