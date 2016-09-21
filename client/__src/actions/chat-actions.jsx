@@ -1,7 +1,7 @@
-import Rx from 'rxjs/Rx';
+import Rx from 'rxjs';
 
 const ChatActions = {
-  fetchConversation$: new Rx.Subject(),
+  fetchConversation$: new Rx.BehaviourSubject(),
   postMessage$: new Rx.Subject(),
 }
 
