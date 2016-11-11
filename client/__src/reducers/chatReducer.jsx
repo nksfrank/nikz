@@ -1,8 +1,12 @@
-import Observable from 'rxjs/Observable';
-import ChatActions from '../actions/chat-actions';
+import Rx, {Observable} from 'rxjs/Rx';
+import ChatActions from 'app/actions/chat-actions';
+import http from 'service/http';
 
-const ChatReducer$ = Observable.merge(
-  ChatActions.fetchConversation$
-    .flatMap(conversationId => http.get(`/messages/${conversationId}`))
-    .map(data => state => ({...state, conversationThread: data}))
-);
+const initialState = {}
+const ChatReducer$ = Observable.of(() => initialState)
+  .merge(
+    ChatActions.fetchConversation$.flatMap(conversationId => http.get(`/messages/${conversationId}`))
+      .map(data => state => ({...state, conversationThread: data}))
+  );
+
+export default ChatReducer$;

@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
+import ChatActions from 'app/actions/chat-actions';
 import connect from 'app/rx-state/connect';
-import state$ from 'app/state';
 import ChatHeader from './chat-header';
 import MessageList from './message-list';
 import MessageItem from './message-item';
@@ -126,6 +126,9 @@ a`
 	}
 }
 
-export default connect(state$, state => {
-	messages: state.conversationThread
+export default connect(state => {
+	messages: state.chat,
+	function fetchMessages(threadId) {
+		ChatActions.fetchConversation$.next(threadId)
+	}
 })(Chat);

@@ -1,10 +1,14 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
-function connect(state$, selector = (state) => state) {
+export default function connect(selector = state => state) {
 	return function wrapWithConnect(WrappedComponent) {
 		return class Connect extends Component {
+			static contextTypes = {
+				state$: PropTypes.object.isRequired,
+			}
+
 			componentWillMount() {
-				this.subscription = state$.map(selector).subscribe(::this.setState);
+				this.subscription = this.context.state$.map(selector).subscribe(::this.setState);
 			}
 
 			componentWillUnmount() {
@@ -20,4 +24,20 @@ function connect(state$, selector = (state) => state) {
 	}
 }
 
-export default connect;
+export class RxStateProvider extends Component {
+	static propTypes = {
+		state$: PropTypes.object.isRequired
+	}
+
+	static childContextTypes = {
+		state$: PropTypes.object.isRequired
+	}
+
+	getChildContext() {
+		return { state$: this.props.state$}
+	}
+
+	render() {
+		return this.props.children;
+	}
+}

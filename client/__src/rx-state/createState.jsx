@@ -1,10 +1,10 @@
-import Rx from 'rxjs';
+import Rx from 'rxjs/Rx';
 
-function createState(reducer$, initialState = Rx.Observable.of({})) {
-	return Rx.Observable
+function createState(reducer$, initialState$ = Rx.Observable.of({})) {
+	return initialState$
 		.merge(reducer$)
-		.scan((state, reducer) => reducer(state))
-		.startWith(initialState)
+		.scan((state, [scope, reducer]) => 
+      ({ ...state, [scope]: reducer(state[scope])}))
 		.publishReplay(1)
 		.refCount();
 }
