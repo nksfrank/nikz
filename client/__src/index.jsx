@@ -4,10 +4,10 @@ import {RxStateProvider} from 'app/rx-state/connect';
 import createState from 'app/rx-state/createState';
 import reducer$ from 'app/reducers';
 
-import Chat from './components/chat/chat';
+import App from './components/app/app';
 
 ReactDOM.render(
     <RxStateProvider state$={createState(reducer$)}>
-      <Chat />
+      <App />
     </RxStateProvider>
     , document.getElementById('root'));
