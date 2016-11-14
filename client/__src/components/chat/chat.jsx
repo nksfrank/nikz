@@ -1,134 +1,40 @@
 import React, {Component, PropTypes} from 'react';
 import ChatActions from 'app/actions/chat-actions';
-import connect from 'app/rx-state/connect';
+import {connect} from 'app/state/RxState';
 import ChatHeader from './chat-header';
 import MessageList from './message-list';
 import MessageItem from './message-item';
-import MessageInputbox from './message-inputbox';
+import MessageBox from './message-inputbox';
 
 require('./chat.scss');
 
 class Chat extends Component {
 	static propTypes = {
-		messages: PropTypes.arrayOf(PropTypes.shape({
-			sender: PropTypes.string,
-			date: PropTypes.string,
-			message: PropTypes.string,
-		}))
-	}
- 	
- 	static defaultProps = {
- 		messages: [
- 			{
- 				id:5,
-	 			sender: "nf",
-				date: "1min",
-				message: `a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-dated
-dated
-dated
-
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a`
-			},
- 			{
- 				id:0,
-	 			sender: "nf",
-				date: "1min",
-				message: "dadada",
-			},
- 			{
- 				id:1,
-	 			sender: "nf",
-				date: "1min",
-				message: "dadada",
-			},
- 			{
- 				id:2,
-	 			sender: "nf",
-				date: "1min",
-				message: "dadada",
-			},
- 			{
- 				id:3,
-	 			sender: "nf",
-				date: "1min",
-				message: "dadada",
-			},
- 			{
- 				id:4,
-	 			sender: "nf",
-				date: "1min",
-				message: "dadada",
-			}
- 		]
- 	}
-	constructor(props) {
-		super(props);
-		this.state = this.props;
+		conversation: PropTypes.object,
 	}
 
-	handleSubmit(txt) {
-		let msg = {sender:'', date:'', message:txt}
-		this.setState({messages: [...this.state.messages, msg]})
+	static defaultProps = {
+		conversation: {
+			messages: []
+		}
+	}
+
+	componentWillMount() {
+  	this.props.fetchConversation(1);
 	}
 
 	render() {
-		let {className, ...props} = this.props;
 		return(
 			<div className="chat fullsize">
 					<ChatHeader />
-					<MessageList messages={this.state.messages} />
-					<MessageInputbox onSendClick={(txt) => {this.handleSubmit(txt)}} />
+					<MessageList messages={this.props.conversation.messages} />
+					<MessageBox />
 			</div>
 		);
 	}
 }
 
-export default connect(state => {
-	messages: state.chat,
-	function fetchMessages(threadId) {
-		ChatActions.fetchConversation$.next(threadId)
-	}
-})(Chat);
+export default connect(state => ({
+	conversation: state.chat,
+  fetchConversation(threadId) { ChatActions.fetch$.next(threadId); },
+}))(Chat);

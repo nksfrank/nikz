@@ -1,11 +1,19 @@
-import React, {Component, PropTypes} from 'react';
-import {Observable} from 'rxjs';
+import React, { PropTypes, Component } from "react";
+import Rx from "rxjs";
 
-export function createState(reducer$, initialState$ = Observable.of({})) {
+export function createAction() {
+  return new Rx.Subject();
+}
+
+export function createActions(actionNames) {
+  return actionNames.reduce((akk, name) => ({ ...akk, [name]: createAction() }), {});
+}
+
+export function createState(reducer$, initialState$ = Rx.Observable.of({})) {
   return initialState$
     .merge(reducer$)
     .scan((state, [scope, reducer]) =>
-      ({...state, [scope]: reducer(state[scope])}))
+      ({ ...state, [scope]: reducer(state[scope]) }))
     .publishReplay(1)
     .refCount();
 }
@@ -15,10 +23,13 @@ export function connect(selector = state => state) {
     return class Connect extends Component {
       static contextTypes = {
         state$: PropTypes.object.isRequired,
-      }
+      };
 
       componentWillMount() {
-        this.subscription = this.context.state$.map(selector).subscribe(::this.setState);
+        this.subscription = this.context.state$.map(selector).subscribe({
+          next: ::this.setState,
+          err: console.log()
+        });
       }
 
       componentWillUnmount() {
@@ -26,23 +37,25 @@ export function connect(selector = state => state) {
       }
 
       render() {
-        return (<WrappedComponent {...this.state} {...this.props} />);
+        return (
+          <WrappedComponent {...this.state} {...this.props} />
+        );
       }
-    }
-  }
+    };
+  };
 }
 
 export class RxStateProvider extends Component {
   static propTypes = {
-    state$: PropTypes.object.isRequired
-  }
+    state$: PropTypes.object.isRequired,
+  };
 
   static childContextTypes = {
-    state$: PropTypes.object.isRequired
-  }
+    state$: PropTypes.object.isRequired,
+  };
 
-  getChildcontext() {
-    return { state$: this.props.state$}
+  getChildContext() {
+    return { state$: this.props.state$ };
   }
 
   render() {

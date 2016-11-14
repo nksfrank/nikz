@@ -12,10 +12,6 @@ class MessageList extends Component {
 		})).isRequired
 	}
 
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
 		this.scrollToBottom();
 	}
