@@ -2,8 +2,7 @@ import {Subject, BehaviorSubject} from "rxjs/Rx";
 
 const ChatActions = {
   fetch$: new Subject(),
-  postMessage$: new Subject(),
-  keypress$: new BehaviorSubject(),
+  keypress$: new Subject(),
   send$: new Subject(),
   enterToSend$: new Subject(),
 }

@@ -26,10 +26,7 @@ export function connect(selector = state => state) {
       };
 
       componentWillMount() {
-        this.subscription = this.context.state$.map(selector).subscribe({
-          next: ::this.setState,
-          err: console.log()
-        });
+        this.subscription = this.context.state$.map(selector).subscribe(::this.setState);
       }
 
       componentWillUnmount() {

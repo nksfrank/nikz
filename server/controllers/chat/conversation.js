@@ -50,7 +50,8 @@ exports.post = (req, res, next) => {
 			obj = req.body;
 	obj["timeStamp"] = Date.now();
 	obj["id"] = faker.random.uuid();
-	conversations[conversationId].push(obj);
+	var conversation = conversations.find(entity => entity.id === conversationId);
+	conversation.messages.push(obj);
 	res.send(obj);
 }
 
