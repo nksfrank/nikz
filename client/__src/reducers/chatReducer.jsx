@@ -17,9 +17,19 @@ const ChatReducer$ = Observable.of(() => initialState)
       .switchMap(({conversation, e}) => Observable.ajax({url: `http://localhost:3090/messages/${conversation.id}`, method: 'POST', body: {'message':conversation.inputValue}, headers: {'Content-Type':'application/json'}})
         .map(response => response.response)
         .catch(Observable.empty()))
-      .map(message => state => Object.assign({}, state, {messages: [...state.messages, message]})),
+      .map(message => state => Object.assign({}, state, {inputValue: '', messages: [...state.messages, message]})),
 
-    ChatActions.keypress$.map(e => state => Object.assign({}, state, {inputValue: e.target.value})),
+    ChatActions.keypress$
+      .filter(({conversation, e}) => e.target.value && !(conversation.enterToSend && e.key === 'Enter' && !e.shiftKey) || e.key !== 'Enter')
+      .map(({conversation, e}) => {console.log(e, e.target, e.target.value); return state => Object.assign({}, state, {inputValue: e.target.value})}),
+
+    ChatActions.keypress$
+    .filter(({conversation, e}) => e && conversation.enterToSend && !e.shiftKey && e.key === 'Enter')
+    .switchMap(({conversation, e}) => Observable.ajax({url: `http://localhost:3090/messages/${conversation.id}`, method: 'POST', body: {'message':conversation.inputValue}, headers: {'Content-Type':'application/json'}})
+        .map(response => response.response)
+        .catch(Observable.empty()))
+      .map(message => {console.log("send"); return state => Object.assign({}, state, {inputValue: '', messages: [...state.messages, message]})}),
+    
     ChatActions.enterToSend$.map(_payload => state => Object.assign({}, state, {enterToSend:!state.enterToSend}))
   );
 

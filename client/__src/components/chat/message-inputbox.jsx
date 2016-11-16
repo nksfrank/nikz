@@ -7,6 +7,10 @@ require('./message-inputbox.scss');
 require('../../styles/segments.scss');
 
 class MessageBox extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {val:''}
+	}
 	componentDidMount() {
     this.setInputFocus();
 	}
@@ -29,7 +33,7 @@ class MessageBox extends Component {
 	}
 
 	handleBlur = () => this.setState({dirty: true});
-	handleChange = (e) => ChatActions.keypress$.next(e);
+	handleChange = (e) => ChatActions.keypress$.next({conversation: this.props.conversation, e});
 	changeOnEnter = () => ChatActions.enterToSend$.next();
 
 	render() {
@@ -40,7 +44,7 @@ class MessageBox extends Component {
 			<div className="message-input container" onBlur={this.handleBlur}>
 				<div className="segments">
 					<div className="segment inputbox">
-						<textarea autoFocus rows="3" value={conversation.inputValue} ref={(c) => this._input = c} onChange={this.handleChange}></textarea>
+						<textarea autoFocus rows="3" value={conversation.inputValue} ref={(c) => this._input = c} onChange={this.handlechange} onKeyPress={this.handlechange}></textarea>
 					</div>
 					<div className="segment toolbar">
 						<div></div>

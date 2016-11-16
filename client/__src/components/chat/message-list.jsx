@@ -25,7 +25,6 @@ class MessageList extends Component {
 
 	render() {
 		let {messages} = this.props;
-		console.log(messages);
 		return(
 			<div className="message-list" ref={(c) => {this._list = c}}>
 				<ul>
