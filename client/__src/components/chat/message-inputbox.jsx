@@ -7,44 +7,26 @@ require('./message-inputbox.scss');
 require('../../styles/segments.scss');
 
 class MessageBox extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {val:''}
-	}
 	componentDidMount() {
     this.setInputFocus();
 	}
-
-	handleSendClick = (e) => ChatActions.send$.next({conversation: this.props.conversation, e});
-	// 	if(this.state.message == undefined || this.state.message === '') {
-	// 		return
-	// 	}
-	// 	let txt = this.state.message;
-	// 	 TODO: send message to backend 
-
-	// 	this.setState({message: ''});
-	// 	this.setState({dirty: false});
-	// 	this.setInputFocus();
-	// 	this.props.onSendClick(txt)
-	// }
 
 	setInputFocus() {
 		this._input.focus();
 	}
 
-	handleBlur = () => this.setState({dirty: true});
-	handleChange = (e) => ChatActions.keypress$.next({conversation: this.props.conversation, e});
+	handleSend = (e) => ChatActions.send$.next({conversation: this.props.conversation, e});
+	handleChange = (e) => {ChatActions.keypress$.next({conversation: this.props.conversation, e})};
 	changeOnEnter = () => ChatActions.enterToSend$.next();
 
 	render() {
 		let {conversation} = this.props;
-		let btnSend = (<div className="messageSendButton"><button disabled={conversation.enterToSend} onClick={this.handleSendClick} className={`${conversation.enterToSend ? 'disabled': ''} button confirm`}>Send</button></div>);
-
+		let btnSend = (<div className="messageSendButton"><button disabled={conversation.enterToSend} onClick={this.handleSend} className={`${conversation.enterToSend ? 'disabled': ''} button confirm`}>Send</button></div>);
 		return (
-			<div className="message-input container" onBlur={this.handleBlur}>
+			<div className="message-input container">
 				<div className="segments">
 					<div className="segment inputbox">
-						<textarea autoFocus rows="3" value={conversation.inputValue} ref={(c) => this._input = c} onChange={this.handlechange} onKeyPress={this.handlechange}></textarea>
+						<textarea autoFocus rows="3" value={conversation.inputValue} ref={(c) => this._input = c} onChange={this.handleChange} onKeyPress={this.handleSend}></textarea>
 					</div>
 					<div className="segment toolbar">
 						<div></div>
