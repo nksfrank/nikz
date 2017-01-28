@@ -11,7 +11,9 @@
   "author": "Niklas Frank",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^7.0.4",
     "jshint": "^2.9.3",
+    "typescript": "^2.1.5",
     "webpack-dev-server": "^1.15.0"
   },
   "dependencies": {
@@ -26,7 +28,6 @@
     "node-sass": "^3.10.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
-
     "body-parser": "^1.15.2",
     "cors": "^2.8.0",
     "express": "^4.14.0",
