@@ -8,7 +8,11 @@ export interface HelloProps {
 class Page extends React.Component<HelloProps, void> {
   render() {
     return(
-      <Card title="Hello World!" description="Welcome" apperance="none" imgSrc="" type="4:3" />
+      <div>
+        <Card title="Hello World!" description="Welcome" apperance="none" imgSrc="" type="4:3" />
+        <Card title="Hello World!" description="Welcome" apperance="none" imgSrc="" type="4:3" />
+        <Card title="Hello World!" description="Welcome" apperance="none" imgSrc="" type="4:3" />
+      </div>
     );
   }
 }

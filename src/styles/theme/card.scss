@@ -1,27 +1,19 @@
-@import 'sizes';
-@import 'colors';
-@import 'shadows';
+@import '~styles/theme/sizes';
+@import '~styles/theme/fonts';
+@import '~styles/theme/colors';
+@import '~styles/theme/shadows';
+@import '~styles/globals';
 
-$cardMarginSpacing: $size-largest * 2;
-
-$white: #FAFAFA;
-$black: #070707;
-
-$hue: 120;
-$warm: $hue - 60;
-$cold: $hue + 60;
-$main: hsl($hue, 10%, 35%);
-
-$font-normal: $global-size;
-$font-biggest: $font-normal * 1.6;
-$font-bigger: $font-normal * 1.4;
-$font-big: $font-normal * 1.2;
-$font-small: $font-normal * 0.7;
-$font-smaller: $font-normal * 0.5;
-
-$spacing-normal: $global-size;
-$spacing-small: $spacing-normal * 0.7;
-$spacing-large: $spacing-normal * 1.6;
-
-$border-radius-primary: 10px;
+$cardSize: $global-size * 26;
+$cardSpacingHuge: $size-largest * 2;
+$cardSpacingNormal: $size-normal;
+$cardSpacingSmall: $size-small;
 $cardBoxShadow: $global-shadow-one;
+
+$cardFontPrimary: $font-primary;
+$cardFontSecondary: $font-secondary;
+$cardFontLarge: $font-big;
+$cardFontNormal: $font-normal;
+
+$cardColor: $black;
+$cardColorSecondary: $white;

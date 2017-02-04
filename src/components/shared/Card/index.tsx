@@ -29,13 +29,13 @@ export default class CardFull extends React.Component<CardModel, undefined> {
   render() {
     return(
       <div className={styles.card}>
-        <div >
+        <div className={styles.bg}>
           <div></div>
         </div>
-        <div >
+        <div className={styles.title}>
           {this.props.title}
         </div>
-        <div >
+        <div className={styles.section}>
           {this.props.description}
         </div>
       </div>
@@ -46,9 +46,17 @@ export default class CardFull extends React.Component<CardModel, undefined> {
 class CardList extends React.Component<CardModel, undefined> {
   render() {
     return(
-      <div className={styles.card}>
-        
+    <div className={styles.card}>
+      <div className={styles.bg}>
+        <div className="profile center border small"></div>
       </div>
+      <div className={styles.title}>
+        {this.props.title}
+      </div>
+      <div className={styles.section}>
+        {this.props.description}
+      </div>
+    </div>
     );
   }
 };

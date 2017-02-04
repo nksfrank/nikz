@@ -1,0 +1,19 @@
+@import '~styles/theme/fonts';
+@import '~styles/theme/colors';
+
+html {
+  font-size: $font-normal;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  margin:0;
+  padding:0;
+  filter: blur(0.4px);
+  color: $black;
+  font-family: $font-primary;
+  background: linear-gradient(135deg, hsl($warm, 85%, 93%), hsl($cold, 15%, 80%));
+}

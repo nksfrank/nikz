@@ -1,18 +1,19 @@
 @import '~styles/theme/card';
+
 .card {
-  $width: $global-size * 26;
+  $width: $cardSize;
   $height: $width/(3/4);
   height: $height;
   width: $width;
   min-width: $width;
-  margin-bottom: $spacing-normal;
+  margin-bottom: $cardSpacingNormal;
   overflow: hidden;
-  background-color: $white;
+  background-color: $cardColorSecondary;
   box-shadow: $cardBoxShadow;
   position:relative;
   
   & + & {
-    margin-left: $cardMarginSpacing;
+    margin-left: $cardSpacingHuge;
   }
   
   .bg {
@@ -22,32 +23,32 @@
   }
     
   & .title {
-    font-family: $font-primary;
-    font-size: $font-big;
-    padding: $spacing-normal 0 0 0;
-    margin: 0 $spacing-normal $spacing-normal $spacing-normal;
+    font-family: $cardFontPrimary;
+    font-size: $cardFontLarge;
+    padding: $cardSpacingNormal 0 0 0;
+    margin: 0 $cardSpacingNormal $cardSpacingNormal $cardSpacingNormal;
   }
   
   & .section {
-    font-family: $font-primary;
-    margin: $spacing-normal;
+    font-family: $cardFontPrimary;
+    margin: $cardSpacingNormal;
   }
 
   & .date {
     text-align: center;
-    padding: $spacing-small;
-    color: $black;
+    padding: $cardSpacingSmall;
+    color: $cardColor;
     left: 0; right: 0;
-    font-family: $font-secondary;
-    font-size: $font-normal;
+    font-family: $cardFontSecondary;
+    font-size: $cardFontNormal;
   }
   
   &.dark {
     & .date {
-      color: $white;
+      color: $cardColorSecondary;
     }
     &.full {
-      color: $white;
+      color: $cardColorSecondary;
     }
   }
   
@@ -66,7 +67,7 @@
     & .title {
     }
     & .section {
-      padding: $spacing-normal;
+      padding: $cardSpacingNormal;
       margin: 0;
     }
   }
