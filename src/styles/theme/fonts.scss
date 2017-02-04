@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300|Roboto+Slab');
+@import '../globals.scss';
+
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'Open Sans', sans-serif;
+
+$font-normal: $global-size;
+$font-biggest: $font-normal * 1.6;
+$font-bigger: $font-normal * 1.4;
+$font-big: $font-normal * 1.2;
+$font-small: $font-normal * 0.7;
+$font-smaller: $font-normal * 0.5;
+$font-smallest: $font-normal * 0.3;

@@ -1,0 +1,11 @@
+@import '../globals';
+
+$size-normal: $global-size;
+
+$size-small: $global-size * 0.8;
+$size-smaller: $global-size * 0.6;
+$size-smallest: $global-size * 0.4;
+
+$size-large: $size-normal * 1.2;
+$size-larger: $size-normal * 1.4;
+$size-largest: $size-normal * 1.6;

@@ -1,0 +1,19 @@
+$global-size: 1rem;
+
+$white: #FAFAFA;
+$black: #070707;
+
+$hue: 120;
+$warm: $hue - 60;
+$cold: $hue + 60;
+$main: hsl($hue, 10%, 35%);
+
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'Open Sans', sans-serif;
+
+$spacing-normal: $global-size;
+$spacing-small: $spacing-normal * 0.7;
+$spacing-large: $spacing-normal * 1.6;
+
+$border-radius-primary: 10px;
+$box-shadow-primary: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);

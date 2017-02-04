@@ -43,6 +43,7 @@
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "typings-for-css-modules-loader": "^1.2.0",
+    "typed-css-modules-loader": "0.0.4",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
     "whatwg-fetch": "^1.0.0"

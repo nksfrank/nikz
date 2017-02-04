@@ -29,6 +29,13 @@ module.exports = {
       exclude: /(node_modules|bower_components)/
     },
     {
+      enforce: 'pre',
+      test: /\.scss$/,
+      loader: ['typed-css-modules-loader', 'sass'],
+      exclude: /(node_modules|bower_components)/
+    },
+    {
+      enforce: 'post',
       test: /\.scss$/,
       use: ExtractTextPlugin.extract({
         loader: 'typings-for-css-modules-loader?modules&sass&namedExport&camelCase!sass-loader'
