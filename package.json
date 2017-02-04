@@ -7,7 +7,9 @@
     "start": "http-server -p 8080",
     "watch:client": "webpack-dev-server --progress --colors --inline",
     "webpack": "webpack",
-    "watch:server": "nodemon server/index.js"
+    "watch:server": "nodemon server/index.js",
+
+    "watch:dev": "webpack-dev-server --progress --colors --inline"
   },
   "author": "Niklas Frank",
   "license": "ISC",
@@ -15,6 +17,7 @@
     "@types/node": "^7.0.4",
     "@types/react": "^15.0.4",
     "@types/react-dom": "^0.14.21",
+    "@types/react-redux": "^4.4.36",
     "awesome-typescript-loader": "^3.0.0-beta.18",
     "jshint": "^2.9.3",
     "source-map-loader": "^0.1.6",
@@ -37,6 +40,7 @@
     "redux": "^3.6.0",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
+    "typings-for-css-modules-loader": "^1.2.0",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
     "whatwg-fetch": "^1.0.0"

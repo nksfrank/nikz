@@ -2,13 +2,6 @@ var webpack = require('webpack'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   path = require('path');
 
-function getEntrySources(sources) {
-  if(process.env.NODE_ENV !== 'production') {
-    sources.push('webpack-dev-server/client?http://localhost:8080');
-    sources.push('webpack/hot/only-dev-server');
-  }
-  return sources;
-}
 module.exports = {
   entry: {
     app: [
@@ -22,19 +15,21 @@ module.exports = {
     sourceMapFilename: '[file].map'
   },
   resolve: {
-    extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.scss', '.css']
+    extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.scss', '.css'],
+    alias: {
+      styles: path.join(__dirname, 'src/styles')
+    }
   },
   module:{
     rules: [{
       test: /\.tsx?$/,
-      loader: 'awesome-typescript-loader',
+      use: 'awesome-typescript-loader',
       exclude: /(node_modules|bower_components)/
     },
     {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract({
-        fallbackLoader: 'style-loader',
-        loader: 'css?sourceMap!sass?sourceMap'
+      use: ExtractTextPlugin.extract({
+        loader: 'typings-for-css-modules-loader?modules&sass&namedExport&camelCase!sass-loader'
       }),
       exclude: /(node_modules|bower_components)/
     }]
