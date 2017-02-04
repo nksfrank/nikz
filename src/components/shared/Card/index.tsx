@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as style from './base.scss';
+import * as styles from './base.scss';
 
 type LayoutType = '4:3' | 'full' | 'list';
 type Apperance = 'none' | 'dark';
@@ -13,37 +13,42 @@ interface CardModel {
   href?:string
 }
 
-const Card = (props: CardModel) => {
-  switch(props.type) {
-    case 'list':
-      return <CardList {...props} />
+class Card extends React.Component<CardModel, undefined> {
+  render() {
+    const props = this.props;
+    switch(props.type) {
+      case 'list':
+        return <CardList {...props} />;
+      default:
+        return <CardFull {...props} />;
+    }
   }
 }
 
-class CardFull extends React.Component<CardModel, undefined> {
+export default class CardFull extends React.Component<CardModel, undefined> {
   render() {
     return(
-      <div className={style.card}>
-        <div className={style.bg}>
-          <div className="profile center border small"></div>
+      <div className={styles.card}>
+        <div >
+          <div></div>
         </div>
-        <div className={style.title}>
+        <div >
           {this.props.title}
         </div>
-        <div className={style.section}>
+        <div >
           {this.props.description}
         </div>
       </div>
     );
   };
-}
+};
 
 class CardList extends React.Component<CardModel, undefined> {
   render() {
     return(
-      <div>
+      <div className={styles.card}>
         
       </div>
     );
   }
-}
+};

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import connect from 'platform/connect';
+import Card from '../shared/Card';
 
 export interface HelloProps {
   text: string;
@@ -8,7 +8,7 @@ export interface HelloProps {
 class Page extends React.Component<HelloProps, void> {
   render() {
     return(
-      <div>{this.props.text}</div>
+      <Card title="Hello World!" description="Welcome" apperance="none" imgSrc="" type="4:3" />
     );
   }
 }
