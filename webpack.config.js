@@ -5,19 +5,21 @@ var webpack = require('webpack'),
 module.exports = {
   entry: {
     app: [
-      './src/views/root/index.tsx',
+      './src/index.tsx',
     ]
   },
   output: {
     path: path.resolve(__dirname, 'www/dist/'),
-    publicPath: '/dist/',
+    publicPath: './dist/',
     filename: '[name].bundle.js',
     sourceMapFilename: '[file].map'
   },
   resolve: {
     extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.scss', '.css'],
     alias: {
-      styles: path.join(__dirname, 'src/styles')
+      styles: path.join(__dirname, 'src/styles'),
+      app: path.join(__dirname, 'src/components'),
+      platform: path.join(__dirname, 'src/components/shared/platform')
     }
   },
   module:{

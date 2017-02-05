@@ -5,18 +5,23 @@
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "es6",
-    "jsx": "react"
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "app/*": ["src/components/*"],
+      "platform/*": ["src/components/shared/platform/*"]
+    }
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
-    "./src/**/*"
+    "src/**/*"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true
   },
-  "compileOnSave": false,
+  "compileOnSave": true,
   "buildOnSave": false,
   "atom": {
     "rewriteTsconfig":false
