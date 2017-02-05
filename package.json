@@ -8,7 +8,6 @@
     "watch:client": "webpack-dev-server --progress --colors --inline",
     "webpack": "webpack",
     "watch:server": "nodemon server/index.js",
-
     "watch:dev": "webpack-dev-server --progress --colors --inline"
   },
   "author": "Niklas Frank",
@@ -18,11 +17,12 @@
     "@types/react": "^15.0.4",
     "@types/react-dom": "^0.14.21",
     "@types/react-redux": "^4.4.36",
+    "@types/react-router-redux": "^4.0.39",
     "awesome-typescript-loader": "^3.0.0-beta.18",
+    "faker": "^3.1.0",
     "jshint": "^2.9.3",
     "source-map-loader": "^0.1.6",
-    "typescript": "^2.1.5",
-    "faker": "^3.1.0"
+    "typescript": "^2.1.5"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
@@ -37,6 +37,8 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
+    "react-router": "^3.0.2",
+    "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
