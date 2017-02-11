@@ -10,7 +10,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'www/dist/'),
-    publicPath: './dist/',
+    publicPath: '/dist/',
     filename: '[name].bundle.js',
     sourceMapFilename: '[file].map'
   },
@@ -48,6 +48,7 @@ module.exports = {
   ],
   devtool: 'eval-source-map',
   devServer: {
+    inline: true,
     historyApiFallback: true,
     contentBase: './www/'
   }
