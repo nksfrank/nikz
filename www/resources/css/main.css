@@ -12,3 +12,9 @@ body {
   filter: blur(0.4px);
   background: linear-gradient(135deg, hsl(60, 85%, 93%), hsl(180, 15%, 80%));
 }
+#root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
