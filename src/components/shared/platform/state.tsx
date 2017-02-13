@@ -3,7 +3,7 @@ type PageType = {
 }
 
 type State = {
-  currentPage: PageType
+  currentPage?: PageType
 }
 
 export default State;
