@@ -25,7 +25,9 @@ class Card extends React.Component<CardModel, undefined> {
   }
 }
 
-export default class CardFull extends React.Component<CardModel, undefined> {
+export default Card as React.ComponentClass<CardModel>;
+
+class CardFull extends React.Component<CardModel, undefined> {
   render() {
     return(
       <div className={styles.card}>
