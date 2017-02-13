@@ -1,14 +1,13 @@
 import * as React from 'react';
+import * as styles from './base.scss';
 import Card from '../shared/Card';
+import connect from 'platform/connect';
 
-export interface HelloProps {
-  text: string;
-}
 
-class Page extends React.Component<HelloProps, void> {
+class Page extends React.Component<undefined, undefined> {
   render() {
     return(
-      <div>
+      <div className={styles.slider}>
         <Card title="Hello World!" description="Welcome" apperance="none" imgSrc="" type="4:3" />
         <Card title="Hello World!" description="Welcome" apperance="none" imgSrc="" type="4:3" />
         <Card title="Hello World!" description="Welcome" apperance="none" imgSrc="" type="4:3" />
@@ -18,10 +17,10 @@ class Page extends React.Component<HelloProps, void> {
 }
 
 export default connect(
-  state => {
+  state => ({
 
-  },
-  dispatch => {
+  }),
+  dispatch => ({
 
-  }
-)(Page) as React.ComponentClass<HelloProps>;
+  })
+)(Page) as React.ComponentClass<undefined>;

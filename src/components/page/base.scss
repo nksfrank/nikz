@@ -1,0 +1,10 @@
+@import '~styles/theme/card';
+
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: $size-large;
+  height: 100%;
+}
