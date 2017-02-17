@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as styles from './base.scss';
 
-type LayoutType = '4:3' | 'full' | 'list';
+type LayoutType = '4:3' | 'full' | 'list' | 'image';
 type Apperance = 'none' | 'dark';
 
 interface CardModel {
@@ -13,52 +13,48 @@ interface CardModel {
   href?:string
 }
 
-class Card extends React.Component<CardModel, undefined> {
-  render() {
-    const props = this.props;
-    switch(props.type) {
-      case 'list':
-        return <CardList {...props} />;
-      default:
-        return <CardFull {...props} />;
-    }
+export default (props: CardModel) => {
+  switch(props.type) {
+    case 'list':
+      return <CardList {...props} />;
+    case 'image':
+      return <CardImage {...props} />;
+    case 'full':
+    default:
+      return <Card {...props} />;
   }
 }
 
-export default Card as React.ComponentClass<CardModel>;
-
-class CardFull extends React.Component<CardModel, undefined> {
-  render() {
-    return(
-      <div className={styles.card}>
-        <div className={styles.bg}>
-          <div></div>
-        </div>
-        <div className={styles.title}>
-          {this.props.title}
-        </div>
-        <div className={styles.section}>
-          {this.props.description}
-        </div>
-      </div>
-    );
-  };
-};
-
-class CardList extends React.Component<CardModel, undefined> {
-  render() {
-    return(
-    <div className={styles.card}>
-      <div className={styles.bg}>
-        <div className="profile center border small"></div>
-      </div>
-      <div className={styles.title}>
-        {this.props.title}
-      </div>
-      <div className={styles.section}>
-        {this.props.description}
-      </div>
+const Card = (props: CardModel) =>
+  <div className={styles.card}>
+    <div className={styles.bg} style={{backgroundImage:`url(${props.imgSrc})`}}>
+      <div></div>
     </div>
-    );
-  }
-};
+    <div className={styles.title}>
+      {props.title}
+    </div>
+    <div className={styles.section}>
+      {props.description}
+    </div>
+  </div>
+
+const CardList = (props: CardModel) =>
+  <div className={styles.card}>
+    <div className={styles.bg} style={{backgroundImage:`url(${props.imgSrc})`}}>
+      <div className="profile center border small"></div>
+    </div>
+    <div className={styles.title}>
+      {props.title}
+    </div>
+    <div className={styles.section}>
+      {props.description}
+    </div>
+  </div>
+
+const CardImage = (props: CardModel) =>
+  <div className={styles.card} style={{backgroundImage:`url(${props.imgSrc})`}}>
+    <div className={styles.expand}></div>
+    <div className={styles.section}>
+      <span>{props.title}</span>
+    </div>
+  </div>

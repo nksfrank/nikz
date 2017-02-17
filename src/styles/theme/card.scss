@@ -8,7 +8,9 @@ $cardSize: $global-size * 26;
 $cardSpacingHuge: $size-largest * 2;
 $cardSpacingNormal: $size-normal;
 $cardSpacingSmall: $size-small;
-$cardBoxShadow: $global-shadow-one;
+
+$cardBoxShadow: $global-shadow-two;
+$cardBoxShadowHover: $global-shadow-six;
 
 $cardFontPrimary: $font-primary;
 $cardFontSecondary: $font-secondary;

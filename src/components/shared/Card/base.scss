@@ -3,12 +3,17 @@
 .card {
   $width: $cardSize;
   $height: $width/(3/4);
+  display: flex;
+  flex-direction: column;
   height: $height;
   width: $width;
   min-width: $width;
   margin-bottom: $cardSpacingNormal;
   overflow: hidden;
   background-color: $cardColorSecondary;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   box-shadow: $cardBoxShadow;
   position:relative;
   
@@ -19,19 +24,7 @@
   .bg {
     position:relative;
     height: $width / (4/3);
-    background: url(https://unsplash.it/720/480/?random) no-repeat;
-  }
-    
-  & .title {
-    font-family: $cardFontPrimary;
-    font-size: $cardFontLarge;
-    padding: $cardSpacingNormal 0 0 0;
-    margin: 0 $cardSpacingNormal $cardSpacingNormal $cardSpacingNormal;
-  }
-  
-  & .section {
-    font-family: $cardFontPrimary;
-    margin: $cardSpacingNormal;
+    background-repeat: no-repeat;
   }
 
   & .date {
@@ -52,27 +45,48 @@
     }
   }
   
-  &.full {
-    & + & {
-      background: url(https://unsplash.it/720/480/?random=3) no-repeat;
-      background-size: cover;
-    }
-    
-    background: url(https://unsplash.it/720/480/?random=1) no-repeat;
-    background-size: cover;
-    display: inline-flex;
-    flex-direction: column;
-    align-items:center;
-    
-    & .title {
-    }
-    & .section {
-      padding: $cardSpacingNormal;
-      margin: 0;
-    }
-  }
+  
   
   &.list {
     
+  }
+
+  &:hover {
+    box-shadow: $cardBoxShadowHover;
+  }
+}
+    
+.title {
+  font-family: $cardFontPrimary;
+  font-size: $cardFontLarge;
+  padding: $cardSpacingNormal 0 0 0;
+  margin: 0 $cardSpacingNormal $cardSpacingNormal $cardSpacingNormal;
+}
+
+.full {
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-flex;
+  flex-direction: column;
+  align-items:center;
+  
+  & .title {
+  }
+}
+
+.expand {
+  flex-grow: 1;
+}
+
+.section {
+  &.fuzzy {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  width: 100%;
+  line-height: normal;
+  padding: $cardSpacingNormal;
+  font-family: $cardFontPrimary;
+  &-border {
+
   }
 }
