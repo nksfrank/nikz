@@ -1,60 +1,73 @@
 import * as React from 'react';
 import * as styles from './base.scss';
+import * as cn from 'classnames';
 
-type LayoutType = '4:3' | 'full' | 'list' | 'image';
-type Apperance = 'none' | 'dark';
+type LayoutType = '4:3' | 'full' | 'image';
+type Apperance = 'invert' | 'border' | 'transparent';
 
-interface CardModel {
-  type: LayoutType,
-  apperance: Apperance,
-  title: string,
+const getApperance = (apperance: Apperance | Apperance[]) =>
+  Array.isArray(apperance) ? apperance.map(a => apperanceStyles.get(a)) : apperanceStyles.get(apperance);
+const apperanceStyles = new Map<string, string>([
+  ['invert', styles.invert],
+  ['border', styles.border],
+  ['transparent', styles.transparent],
+]);
+
+interface IApperance {
+  apperance?: Apperance | Apperance[];
+}
+interface ICardModel extends IApperance {
+  title?: string,
+  type?: LayoutType,
   description?: string,
-  imgSrc: string,
-  href?:string
+  href?:string,
+  children?: any;
+  img?: IImageModel
 }
 
-export default (props: CardModel) => {
-  switch(props.type) {
-    case 'list':
-      return <CardList {...props} />;
+const Card = (p: ICardModel) =>
+  <div className={cn(styles.card, getApperance(p.apperance))}>
+    {p.children}
+  </div>;
+
+const CardImage = (p: ICardModel) => 
+  <div className={cn(styles.card, getApperance(p.apperance))} style={{backgroundImage: `url(${p.img.src})`}}>
+    <div className={styles.expand}></div>
+    {p.children}
+  </div>;
+
+interface ITitle extends IApperance {
+  title?: string;
+  children?: string;
+}
+export const Title = (p: ITitle) =>
+  <div className={cn(styles.title, getApperance(p.apperance))}>
+    {p.title || p.children}
+  </div>;
+
+interface ISectionModel extends IApperance {
+  children?: any;
+}
+export const Section = (p: ISectionModel) =>
+  <div className={cn(styles.section, getApperance(p.apperance))}>
+    {p.children}
+  </div>;
+
+interface IImageModel extends IApperance {
+  src: string | URL;
+  children?: any;
+}
+export const Image = (p: IImageModel) =>
+  <div className={cn(styles.bg, styles.expand, getApperance(p.apperance))} style={{backgroundImage: `url(${p.src})`}}>
+    {p.children}
+  </div>;
+
+export default (p: ICardModel) => {
+  switch(p.type) {
     case 'image':
-      return <CardImage {...props} />;
+      return <CardImage {...p} />;
     case 'full':
     default:
-      return <Card {...props} />;
+      return <Card {...p} />;
   }
 }
-
-const Card = (props: CardModel) =>
-  <div className={styles.card}>
-    <div className={styles.bg} style={{backgroundImage:`url(${props.imgSrc})`}}>
-      <div></div>
-    </div>
-    <div className={styles.title}>
-      {props.title}
-    </div>
-    <div className={styles.section}>
-      {props.description}
-    </div>
-  </div>
-
-const CardList = (props: CardModel) =>
-  <div className={styles.card}>
-    <div className={styles.bg} style={{backgroundImage:`url(${props.imgSrc})`}}>
-      <div className="profile center border small"></div>
-    </div>
-    <div className={styles.title}>
-      {props.title}
-    </div>
-    <div className={styles.section}>
-      {props.description}
-    </div>
-  </div>
-
-const CardImage = (props: CardModel) =>
-  <div className={styles.card} style={{backgroundImage:`url(${props.imgSrc})`}}>
-    <div className={styles.expand}></div>
-    <div className={styles.section}>
-      <span>{props.title}</span>
-    </div>
-  </div>

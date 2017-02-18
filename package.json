@@ -8,11 +8,12 @@
     "watch:client": "webpack-dev-server --progress --colors --inline",
     "webpack": "webpack",
     "watch:server": "nodemon server/index.js",
-    "watch:dev": "webpack-dev-server --progress --colors --inline"
+    "watch:dev": "webpack-dev-server --progress --colors --inline --open"
   },
   "author": "Niklas Frank",
   "license": "ISC",
   "devDependencies": {
+    "@types/classnames": "0.0.32",
     "@types/node": "^7.0.4",
     "@types/react": "^15.0.4",
     "@types/react-dom": "^0.14.21",

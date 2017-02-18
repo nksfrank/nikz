@@ -1,6 +1,13 @@
 @import '~styles/theme/card';
 
+%backgroundImge {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .card {
+  @extend %backgroundImge;
   $width: $cardSize;
   $height: $width/(3/4);
   display: flex;
@@ -8,24 +15,11 @@
   height: $height;
   width: $width;
   min-width: $width;
-  margin-bottom: $cardSpacingNormal;
   overflow: hidden;
   background-color: $cardColorSecondary;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   box-shadow: $cardBoxShadow;
   position:relative;
-  
-  & + & {
-    margin-left: $cardSpacingHuge;
-  }
-  
-  .bg {
-    position:relative;
-    height: $width / (4/3);
-    background-repeat: no-repeat;
-  }
+  font-size: $cardFontSizeSecondary;
 
   & .date {
     text-align: center;
@@ -35,32 +29,39 @@
     font-family: $cardFontSecondary;
     font-size: $cardFontNormal;
   }
-  
-  &.dark {
-    & .date {
-      color: $cardColorSecondary;
-    }
-    &.full {
-      color: $cardColorSecondary;
-    }
-  }
-  
-  
-  
-  &.list {
-    
-  }
 
   &:hover {
     box-shadow: $cardBoxShadowHover;
   }
 }
-    
+  
+.bg {
+  @extend %backgroundImge;
+  display:flex;
+  position:relative;
+  .card.invert & {
+    color: $cardColorSecondary;
+  }
+}
+
 .title {
+  width:100%;
+  display: flex;
+  align-self: flex-end;
   font-family: $cardFontPrimary;
   font-size: $cardFontLarge;
-  padding: $cardSpacingNormal 0 0 0;
-  margin: 0 $cardSpacingNormal $cardSpacingNormal $cardSpacingNormal;
+  padding: $cardSpacingNormal;
+}
+
+.invert {
+  color: $cardColorSecondary;
+}
+
+.border {
+  border-top: 1px solid $cardColorBorder;
+  .card.invert & {
+    border-top: 1px solid $cardColorBorderDark;
+  }
 }
 
 .full {
@@ -69,24 +70,24 @@
   display: inline-flex;
   flex-direction: column;
   align-items:center;
-  
-  & .title {
-  }
 }
 
 .expand {
   flex-grow: 1;
 }
 
-.section {
-  &.fuzzy {
-    background: rgba(0, 0, 0, 0.2);
+.transparent {
+  &:not(.card) {
+    background: rgba(0,0,0,.2);
   }
+  .card.invert & {
+    color: $cardColorSecondary;
+  }
+}
+
+.section {
   width: 100%;
   line-height: normal;
   padding: $cardSpacingNormal;
   font-family: $cardFontPrimary;
-  &-border {
-
-  }
 }

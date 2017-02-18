@@ -3,8 +3,9 @@
 @import '~styles/theme/colors';
 @import '~styles/theme/shadows';
 @import '~styles/globals';
+@import '~styles/variables';
 
-$cardSize: $global-size * 26;
+$cardSize: $global-size * 18;
 $cardSpacingHuge: $size-largest * 2;
 $cardSpacingNormal: $size-normal;
 $cardSpacingSmall: $size-small;
@@ -12,10 +13,13 @@ $cardSpacingSmall: $size-small;
 $cardBoxShadow: $global-shadow-two;
 $cardBoxShadowHover: $global-shadow-six;
 
-$cardFontPrimary: $font-primary;
-$cardFontSecondary: $font-secondary;
-$cardFontLarge: $font-big;
-$cardFontNormal: $font-normal;
+$cardFontPrimary: $fontPrimary;
+$cardFontSecondary: $fontSecondary;
+$cardFontLarge: $fontBig;
+$cardFontNormal: $fontNormal;
+$cardFontSizeSecondary: $fontSizeSecondary;
 
 $cardColor: $black;
 $cardColorSecondary: $white;
+$cardColorBorder: rgba(0,0,0,$shadowUmbra);
+$cardColorBorderDark: rgba(255,255,255,$shadowUmbra);
