@@ -3,27 +3,37 @@ import * as styles from './base.scss';
 import * as cn from 'classnames';
 
 type LayoutType = '4:3' | 'full' | 'image';
-type Apperance = 'invert' | 'border' | 'transparent';
+type Apperance = 'invert' | 'border' | 'overlay';
 
 const getApperance = (apperance: Apperance | Apperance[]) =>
   Array.isArray(apperance) ? apperance.map(a => apperanceStyles.get(a)) : apperanceStyles.get(apperance);
 const apperanceStyles = new Map<string, string>([
   ['invert', styles.invert],
   ['border', styles.border],
-  ['transparent', styles.transparent],
+  ['overlay', styles.overlay],
 ]);
 
 interface IApperance {
   apperance?: Apperance | Apperance[];
 }
-interface ICardModel extends IApperance {
-  title?: string,
+interface ICardModel extends IApperance, ITitle {
   type?: LayoutType,
   description?: string,
   href?:string,
   children?: any;
   img?: IImageModel
 }
+
+const Default = (p: ICardModel) => 
+  <Card {...p}>
+    {p.img && <Image {...p.img}>
+      <Title {...p}/>
+    </Image> || <Title {...p} />}
+
+    {p.description && <Section>
+      {p.description}
+    </Section>}
+  </Card>
 
 const Card = (p: ICardModel) =>
   <div className={cn(styles.card, getApperance(p.apperance))}>
@@ -38,11 +48,13 @@ const CardImage = (p: ICardModel) =>
 
 interface ITitle extends IApperance {
   title?: string;
+  subtitle?: string;
   children?: string;
 }
 export const Title = (p: ITitle) =>
   <div className={cn(styles.title, getApperance(p.apperance))}>
-    {p.title || p.children}
+    {<span>{p.title || p.children}</span>}
+    {p.subtitle && <span>{p.subtitle}</span>}
   </div>;
 
 interface ISectionModel extends IApperance {
@@ -65,9 +77,10 @@ export const Image = (p: IImageModel) =>
 export default (p: ICardModel) => {
   switch(p.type) {
     case 'image':
-      return <CardImage {...p} />;
+      return <CardImage {...p}/>;
     case 'full':
-    default:
-      return <Card {...p} />;
+      return <Card {...p}/>;
+    default: 
+      return p.children ? <Card {...p}/> : <Default {...p}/>;
   }
 }

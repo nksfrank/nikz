@@ -5,25 +5,26 @@ import connect from 'platform/connect';
 
 export default () =>
   <div className={styles.slider}>
+    <Card title="Welcome" apperance={['invert', 'overlay']} description="Selection" img={{src:'https://unsplash.it/720/480/?random=4'}} />
     <Card type="full">
       <Image src='https://unsplash.it/720/480/?random=2'>
-        <Title title="Hello World" apperance={["transparent", 'invert']} />
+        <Title title="Hello World" subtitle="Welcome to the suck" apperance={["overlay", 'invert']} />
       </Image>
       <Section apperance='border'>
         Welcome to the Chill
       </Section>
     </Card>
     <Card>
-      <Title title="Hello World" apperance="transparent" />
+      <Title title="Hello World" />
       <Section apperance='border'>
         Welcome to the Chill
       </Section>
-      <Section apperance='border'>
+      <Section apperance={['border', 'invert']}>
         Welcome to the Chill
       </Section>
     </Card>
-    <Card description="Welcome" apperance={['invert', 'transparent']} type="image" img={{src:'https://unsplash.it/720/480/?random=5'}}>
-      <Title apperance={["transparent", 'border']}>
+    <Card description="Welcome" apperance={['invert', 'overlay']} type="image" img={{src:'https://unsplash.it/720/480/?random=5'}}>
+      <Title apperance={["overlay", 'border']}>
         Welcome to the Chill
       </Title>
     </Card>

@@ -46,11 +46,19 @@
 
 .title {
   width:100%;
-  display: flex;
   align-self: flex-end;
-  font-family: $cardFontPrimary;
-  font-size: $cardFontLarge;
   padding: $cardSpacingNormal;
+  font-family: $cardFontPrimary;
+  span:first-child {
+    font-family: $cardFontPrimary;
+    font-size: $cardFontLarge;
+    line-height: 36px;
+  }
+  span + span {
+    width:100%;
+    display: flex;
+    font-size: $cardFontSizePrimary;
+  }
 }
 
 .invert {
@@ -59,7 +67,7 @@
 
 .border {
   border-top: 1px solid $cardColorBorder;
-  .card.invert & {
+  &.invert, .card.invert & {
     border-top: 1px solid $cardColorBorderDark;
   }
 }
@@ -76,12 +84,9 @@
   flex-grow: 1;
 }
 
-.transparent {
+.overlay {
   &:not(.card) {
     background: rgba(0,0,0,.2);
-  }
-  .card.invert & {
-    color: $cardColorSecondary;
   }
 }
 

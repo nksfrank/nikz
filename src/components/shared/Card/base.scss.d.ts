@@ -6,5 +6,5 @@ export const title: string;
 export const border: string;
 export const full: string;
 export const expand: string;
-export const transparent: string;
+export const overlay: string;
 export const section: string;
