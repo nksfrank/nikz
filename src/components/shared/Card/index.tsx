@@ -16,7 +16,7 @@ const apperanceStyles = new Map<string, string>([
 interface IApperance {
   apperance?: Apperance | Apperance[];
 }
-interface ICardModel extends IApperance, ITitle {
+export interface ICardModel extends IApperance, ITitle {
   type?: LayoutType,
   description?: string,
   href?:string,
